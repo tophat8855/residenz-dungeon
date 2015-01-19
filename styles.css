@@ -1,0 +1,32 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin:20;
+  padding: 0;
+  background-color: tan;
+}
+
+#dungeon-map {
+  height: 80%;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  border-right-width: 1px;
+  border-right-color: #ffffff;
+  border-right-style: solid;
+  border-left-width: 2px;
+  border-left-color: #ffffff;
+  border-left-style: solid;
+}
+
+.pop_up_box_text {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 16px;
+  line-height: 22px;
+  color: #ffffff;
+  display: inline;
+}
