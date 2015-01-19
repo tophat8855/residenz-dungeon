@@ -1,6 +1,53 @@
 console.log("Working");
 
-var dungeonMapCenter = new google.maps.LatLng(49.791884, 9.940035);
+var style_dungeon = [
+  {
+    "elementType": "labels",
+    "stylers": [
+    { "visibility": "off" }
+    ]
+  },{
+    "featureType": "road.local",
+    "stylers": [
+    { "hue": "#ffc300" },
+    { "lightness": -30 },
+    { "color": "#a79e80" },
+    { "weight": 2.3 },
+    { "visibility": "off" }
+    ]
+  },{
+    "featureType": "landscape.man_made",
+    "stylers": [
+    { "hue": "#00ff11" },
+    { "saturation": 100 },
+    { "color": "#a5cc80" }
+    ]
+  },{
+    "featureType": "poi.park",
+    "stylers": [
+    { "color": "#80b780" }
+    ]
+  },{
+    "featureType": "water",
+    "stylers": [
+    { "color": "#4d80ce" }
+    ]
+  },{
+    "featureType": "poi.school",
+    "stylers": [
+    { "color": "#808080" }
+    ]
+  },{
+    "featureType": "road.arterial",
+    "stylers": [
+    { "color": "#beb280" }
+    ]
+  }
+];
+
+var styled_dungeon = new google.maps.StyledMapType(style_dungeon, {name: "Map style"});
+
+var dungeonMapCenter = new google.maps.LatLng(49.791563, 9.941251);
 var dungeonMapZoom = 17;
 var dungeonMapZoomMax = 20;
 var dungeonMapZoomMin = 14;
@@ -8,11 +55,14 @@ var dungeonMapZoomMin = 14;
 var dungeonMapOptions = {
   center: dungeonMapCenter,
   zoom: dungeonMapZoom,
-  mapTypeId: google.maps.MapTypeId.HYBRID,
+  mapTypeId: google.maps.MapTypeId.ROAD,
   maxZoom: dungeonMapZoomMax,
   minZoom: dungeonMapZoomMin,
   panControl: false,
   mapTypeControl:false,
+  mapTypeControlOptions: {
+    mapTypeIds: ['map_styles_dungeon']
+  }
 };
 
 var dungeonMap;
@@ -22,12 +72,15 @@ google.maps.event.addDomListener(window, 'load', loadDungeonMap);
 
 function loadDungeonMap() {
   dungeonMap = new google.maps.Map(document.getElementById("dungeon-map"), dungeonMapOptions);
+  dungeonMap.mapTypes.set('map_styles_dungeon', styled_dungeon);
+  dungeonMap.setMapTypeId('map_styles_dungeon');
   loadEncounters();
 };
 
 function loadEncounters() {
   loadOwlbear();
   loadPub();
+  loadDungeonEntrance();
 
   function loadOwlbear() {
     var encounterPositionOwlbear = new google.maps.LatLng(49.791683, 9.940143);
@@ -126,6 +179,56 @@ function loadEncounters() {
       this.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
       setZoomWhenEncounterClicked();
       dungeonMap.setCenter(encounterPub.getPosition());
+    });
+  };
+
+  function loadDungeonEntrance() {
+    var encounterPositionDungeon = new google.maps.LatLng(49.792657, 9.939437);
+    var encounterIconDungeon = {
+      url: 'images/icon_dungeon.png',
+      size: new google.maps.Size(32, 32),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(16, 16),
+    };
+
+    encounterDungeon = new google.maps.Marker({
+      position: encounterPositionDungeon,
+      map: dungeonMap,
+      title: 'Pub',
+      icon: encounterIconDungeon,
+      zIndex:104,
+    });
+
+    var boxTextDungeon = document.createElement("DIV");
+    boxTextDungeon.style.cssText = pop_up_info;
+    boxTextDungeon.innerHTML = '<span class="pop_up_box_text"><img src="images/entrance.png" width="64" height="64" border="0" /></span>';
+
+    var infoboxOptionsDungeon = {
+      content: boxTextDungeon,
+      disableAutoPan: false,
+      maxWidth: 0,
+      pixelOffset: new google.maps.Size(-241, 0),
+      zIndex:null,
+      boxStyle:{
+        background: "url('infobox/pop_up_box_top_arrow.png') no-repeat",
+        opacity: 1,
+        width: "320px"
+      },
+      closeBoxMargin: "10px 2px 2px 2px",
+      closeBoxURL: "images/button_close.png",
+      infoBoxClearance: new google.maps.Size(1, 1),
+      isHidden: false,
+      pane: "floatPane",
+      enableEventPropagation: false
+    };
+
+    infoboxDungeon = new InfoBox(infoboxOptionsDungeon);
+
+    google.maps.event.addListener(encounterDungeon, "click", function(e) {
+      infoboxDungeon.open(dungeonMap, this);
+      this.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+      setZoomWhenEncounterClicked();
+      dungeonMap.setCenter(encounterDungeon.getPosition());
     });
   };
 
