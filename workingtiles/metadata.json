@@ -1,0 +1,12 @@
+{
+  "name": "attempt",
+  "version": "1.0.0",
+  "description": "",
+  "type": "overlay",
+  "format": "png",
+  "minzoom": "15",
+  "maxzoom": "19",
+  "bounds": "9.93782043,49.79057359,9.94468790,49.79323363",
+  "scale": "1",
+  "profile": "mercator"
+}
