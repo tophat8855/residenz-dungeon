@@ -1,6 +1,6 @@
 console.log("Working");
 
-var style_dungeon = [
+var style_dungeon =[
   {
     "elementType": "labels",
     "stylers": [
@@ -86,14 +86,14 @@ function loadDungeonMap() {
 }
 
 function loadEncounters() {
-  var owlbear = new Marker('Owlbear', 49.791683, 9.940143, 'icon_owlbear.png', 'owlbear.png');
-  var pub = new Marker('Pub', 49.790951, 9.942430, 'icon_pub.png', 'pub.png');
-  var dungeon = new Marker('Dungeon', 49.792657, 9.939437, 'icon_dungeon.png', 'entrance.png');
+  var owlbear = new Marker('Owlbear', 49.791683, 9.940143, 'icon_owlbear.png', 'owlbear.png', 105);
+  var pub = new Marker('Pub', 49.790951, 9.942430, 'icon_pub.png', 'pub.png', 109);
+  var dungeon = new Marker('Dungeon', 49.792657, 9.939437, 'icon_dungeon.png', 'entrance.png', 102);
 
 
   google.maps.event.addListener(dungeonMap, "zoom_changed", function() {
     var newZoom = dungeonMap.getZoom();
-    if (newZoom > 16) {
+    if (newZoom > 12) {
       dungeonMap.setMapTypeId('map_styles_dungeon_zoomed');
     } else {
       dungeonMap.setMapTypeId('map_styles_dungeon');

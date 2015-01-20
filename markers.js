@@ -5,7 +5,7 @@ function setZoomWhenEncounterClicked() {
   }
 }
 
-var Marker = function (markerTitle, lat, lng, iconImg, bigImg) {
+var Marker = function (markerTitle, lat, lng, iconImg, bigImg, z) {
   var encounterPosition = new google.maps.LatLng(lat, lng);
   var encounterIcon = {
     url: 'images/' + iconImg,
@@ -19,23 +19,23 @@ var Marker = function (markerTitle, lat, lng, iconImg, bigImg) {
     map: dungeonMap,
     title: markerTitle,
     icon: encounterIcon,
-    zIndex:102,
+    zIndex: z,
   });
 
   var boxText = document.createElement("DIV");
   boxText.style.cssText = pop_up_info;
-  boxText.innerHTML = '<span class="pop_up_box_text"><img src="images/' + bigImg + '" width="300" height="200" border="0" /></span>';
+  boxText.innerHTML = '<span class="pop_up_box_text"><img src="images/' + bigImg + '" width="75" height="50" border="0" />I put something here.</span>';
 
   var infoboxOptions = {
     content: boxText,
     disableAutoPan: false,
     maxWidth: 0,
-    pixelOffset: new google.maps.Size(-241, 0),
+    pixelOffset: new google.maps.Size(0, 0),
     zIndex:null,
     boxStyle:{
       background: "url('infobox/pop_up_box_top_arrow.png') no-repeat",
       opacity: 1,
-      width: "320px"
+      width: "150px"
     },
     closeBoxMargin: "10px 2px 2px 2px",
     closeBoxURL: "images/button_close.png",
