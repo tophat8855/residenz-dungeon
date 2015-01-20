@@ -1,6 +1,6 @@
 console.log("Working");
 
-var style_dungeon =[
+var style_dungeon = [
   {
     "elementType": "labels",
     "stylers": [
@@ -107,7 +107,7 @@ function loadOwlbear2() {
 
   var boxTextOwlbear = document.createElement("DIV");
   boxTextOwlbear.style.cssText = pop_up_info;
-  boxTextOwlbear.innerHTML = '<span class="pop_up_box_text"><img src="images/owlbear.png" width="100" height="75" border="0" /></span>';
+  boxTextOwlbear.innerHTML = '<span class="pop_up_box_text"><img src="images/owlbear1.png" width="100" height="75" border="0" /></span>';
 
   var infoboxOptionsOwlbear = {
     content: boxTextOwlbear,
@@ -252,12 +252,12 @@ function loadPub() {
       map: dungeonMap,
       title: 'Pub',
       icon: encounterIconDungeon,
-      zIndex:104,
+      zIndex:100,
     });
 
     var boxTextDungeon = document.createElement("DIV");
     boxTextDungeon.style.cssText = pop_up_info;
-    boxTextDungeon.innerHTML = '<span class="pop_up_box_text"><img src="images/entrance.png" width="64" height="64" border="0" /></span>';
+    boxTextDungeon.innerHTML = '<span class="pop_up_box_text">Some stuff I wrote<img src="images/entrance.png" width="64" height="64" border="0" /></span>';
 
     var infoboxOptionsDungeon = {
       content: boxTextDungeon,
@@ -286,4 +286,11 @@ function loadPub() {
       setZoomWhenEncounterClicked();
       dungeonMap.setCenter(encounterDungeon.getPosition());
     });
+
+    function setZoomWhenEncounterClicked() {
+      var currentZoom = dungeonMap.getZoom();
+      if (currentZoom < 15) {
+        dungeonMap.setZoom(15);
+      }
+    }
   }
