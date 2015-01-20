@@ -19,8 +19,8 @@ var Marker = function (markerTitle, lat, lng, iconImg, bigImg) {
   boxText.style.cssText = pop_up_info;
   boxText.innerHTML = '<span class="pop_up_box_text"><img src="images/' + bigImg + '" width="300" height="200" border="0" /></span>';
 
-  var infoboxOptionsOwlbear = {
-    content: boxTextOwlbear,
+  var infoboxOptions = {
+    content: boxText,
     disableAutoPan: false,
     maxWidth: 0,
     pixelOffset: new google.maps.Size(-241, 0),
@@ -38,12 +38,12 @@ var Marker = function (markerTitle, lat, lng, iconImg, bigImg) {
     enableEventPropagation: false
   };
 
-  infoboxOwlbear = new InfoBox(infoboxOptionsOwlbear);
+  infobox = new InfoBox(infoboxOptions);
 
-  google.maps.event.addListener(encounterOwlbear, "click", function(e) {
-    infoboxOwlbear.open(dungeonMap, this);
+  google.maps.event.addListener(encounterMarker, "click", function(e) {
+    infobox.open(dungeonMap, this);
     this.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
     setZoomWhenEncounterClicked();
-    dungeonMap.setCenter(encounterOwlbear.getPosition());
+    dungeonMap.setCenter(encounterMarker.getPosition());
   });
 }
