@@ -1,3 +1,10 @@
+function setZoomWhenEncounterClicked() {
+  var currentZoom = dungeonMap.getZoom();
+  if (currentZoom < 15) {
+    dungeonMap.setZoom(15);
+  }
+}
+
 var Marker = function (markerTitle, lat, lng, iconImg, bigImg) {
   var encounterPosition = new google.maps.LatLng(lat, lng);
   var encounterIcon = {
