@@ -1,56 +1,14 @@
 console.log("Working");
 
-var style_dungeon = [
-  {
-    "elementType": "labels",
-    "stylers": [
-    { "visibility": "off" }
-    ]
-  },{
-    "featureType": "road.local",
-    "stylers": [
-    { "hue": "#ffc300" },
-    { "lightness": -30 },
-    { "color": "#a79e80" },
-    { "weight": 2.3 },
-    { "visibility": "off" }
-    ]
-  },{
-    "featureType": "landscape.man_made",
-    "stylers": [
-    { "hue": "#00ff11" },
-    { "saturation": 100 },
-    { "color": "#a5cc80" }
-    ]
-  },{
-    "featureType": "poi.park",
-    "stylers": [
-    { "color": "#80b780" }
-    ]
-  },{
-    "featureType": "water",
-    "stylers": [
-    { "color": "#4d80ce" }
-    ]
-  },{
-    "featureType": "poi.school",
-    "stylers": [
-    { "color": "#808080" }
-    ]
-  },{
-    "featureType": "road.arterial",
-    "stylers": [
-    { "color": "#beb280" }
-    ]
-  }
-];
-
 var styled_dungeon = new google.maps.StyledMapType(style_dungeon, {name: "Map style"});
 
+var dungeonMap;
 var dungeonMapCenter = new google.maps.LatLng(49.791563, 9.941251);
 var dungeonMapZoom = 17;
 var dungeonMapZoomMax = 19;
 var dungeonMapZoomMin = 12;
+var pop_up_info = "border: 0px solid black; background-color: #ffffff; padding:0px; margin-top: 2px; border-radius:2px; -moz-border-radius: 2px; -webkit-border-radius: 2px; box-shadow: 1px 1px #888;";
+
 
 var dungeonMapOptions = {
   center: dungeonMapCenter,
@@ -65,17 +23,14 @@ var dungeonMapOptions = {
   }
 };
 
-var dungeonMap;
-var pop_up_info = "border: 0px solid black; background-color: #ffffff; padding:15px; margin-top: 8px; border-radius:10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; box-shadow: 1px 1px #888;";
-
-google.maps.event.addDomListener(window, 'load', loadDungeonMap);
-
 var hexagonalOverlay = new google.maps.ImageMapType({
   getTileUrl: function(coord, zoom) {
-    return 'workingtiles/' + zoom + '/' + coord.x + '/' + coord.y + '.png';
+    return 'out/' + zoom + '/' + coord.x + '/' + coord.y + '.png';
   },
   tileSize: new google.maps.Size(256,256)
 });
+
+google.maps.event.addDomListener(window, 'load', loadDungeonMap);
 
 function loadDungeonMap() {
   dungeonMap = new google.maps.Map(document.getElementById("dungeon-map"), dungeonMapOptions);
@@ -118,7 +73,6 @@ function loadOwlbear2() {
     boxStyle:{
       background: "url('infobox/pop_up_box_top_arrow.png') no-repeat",
       opacity: 1,
-      width: "150px"
     },
     closeBoxMargin: "2px 2px 2px 2px",
     closeBoxURL: "images/button_close.png",
@@ -168,7 +122,6 @@ function loadOwlbear() {
     boxStyle:{
       background: "url('infobox/pop_up_box_top_arrow.png') no-repeat",
       opacity: 1,
-      width: "150px"
     },
     closeBoxMargin: "2px 2px 2px 2px",
     closeBoxURL: "images/button_close.png",
@@ -218,7 +171,6 @@ function loadPub() {
     boxStyle:{
       background: "url('infobox/pop_up_box_top_arrow.png') no-repeat",
       opacity: 1,
-      width: "150px"
     },
     closeBoxMargin: "2px 2px 2px 2px",
     closeBoxURL: "images/button_close.png",
@@ -268,7 +220,6 @@ function loadPub() {
       boxStyle:{
         background: "url('infobox/pop_up_box_top_arrow.png') no-repeat",
         opacity: 1,
-        width: "150px"
       },
       closeBoxMargin: "2px 2px 2px 2px",
       closeBoxURL: "images/button_close.png",
