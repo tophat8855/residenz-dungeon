@@ -4,7 +4,7 @@ var styled_dungeon = new google.maps.StyledMapType(style_dungeon, {name: "Map st
 
 var dungeonMap;
 var dungeonMapCenter = new google.maps.LatLng(49.791563, 9.941251);
-var dungeonMapZoom = 17;
+var dungeonMapZoom = 18;
 var dungeonMapZoomMax = 19;
 var dungeonMapZoomMin = 12;
 var pop_up_info = "border: 0px solid black; background-color: #ffffff; padding:0px; margin-top: 2px; border-radius:2px; -moz-border-radius: 2px; -webkit-border-radius: 2px; box-shadow: 1px 1px #888;";
