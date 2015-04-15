@@ -3,7 +3,7 @@ console.log("Working");
 var styled_dungeon = new google.maps.StyledMapType(style_dungeon, {name: "Map style"});
 
 var dungeonMap;
-var dungeonMapCenter = new google.maps.LatLng(49.791563, 9.941251);
+var dungeonMapCenter = new google.maps.LatLng(49.791760, 9.940939);
 var dungeonMapZoom = 18;
 var dungeonMapZoomMax = 19;
 var dungeonMapZoomMin = 12;
